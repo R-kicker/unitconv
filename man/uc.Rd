@@ -27,6 +27,7 @@ Unit conversion function "from"-"to"
  uc(1, "ft3", "l")
  uc(1, "ft3", "cm3")
  uc(1, "bbl", "l")
+ uc(150, "m", "km") + u(1:5, "km")
  # Example below with correct units
  uc(1, "kg/m3", "lb/ft3")
  # Example below with incorrect units causes an error
