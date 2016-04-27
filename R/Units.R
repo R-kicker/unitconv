@@ -79,6 +79,11 @@ lb_kg <- 0.4535924
 ft_m <- 0.3048
 
 #' @title Important conversion factors apart from unit lists
+#' @description Volume: barrel [bbl] to cubic feet [ft3] conversion factor
+#' @export
+bbl_ft3 <- 5.615
+
+#' @title Important conversion factors apart from unit lists
 #' @description Area: millidarcy [mD] to square meter [m2] conversion factor
 #' @export
 mD_m2 <- 0.9869e-12
