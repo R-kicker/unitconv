@@ -4,10 +4,12 @@
 \alias{print.physical}
 \title{Generic function: print physical measure}
 \usage{
-\method{print}{physical}(x)
+\method{print}{physical}(x, ...)
 }
 \arguments{
 \item{x}{A quantity to print}
+
+\item{...}{Optional arguments to be passed further}
 }
 \value{
 Prints to console x with "unit" at the beginning of the vector

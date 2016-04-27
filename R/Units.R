@@ -362,23 +362,24 @@ MPa_psi <- function (x) {
 #'  is.physical(32)
 #'  is.physical(u(32, "deg.C"))
 #' @export
-is.physical <- function (cl) {
-  return(class(cl) == "physical")
+is.physical <- function (x) {
+  return(class(x) == "physical")
 }
 
 #' @title Generic function: print physical measure
 #' @description Generic function: print physical measure
 #' @param x A quantity to print
+#' @param ... Optional arguments to be passed further
 #' @return Prints to console x with "unit" at the beginning of the vector
 #' @examples
 #'  z <- round(runif(10)*100, 0)
 #'  print(u(z, "mD"))
 #' @export
-print.physical <- function(x) {
+print.physical <- function(x, ...) {
   uattr <- attr(x, "unit")
   attr(x, "unit") <- NULL
   print(uattr)
-  print(unclass(x))
+  print(unclass(x), ...)
   #cat(uattr, ":", unclass(x))
 }
 

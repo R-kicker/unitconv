@@ -4,7 +4,7 @@
 \alias{is.physical}
 \title{Generic function: check physical measure}
 \usage{
-is.physical(cl)
+is.physical(x)
 }
 \arguments{
 \item{x}{A quantity to check}
