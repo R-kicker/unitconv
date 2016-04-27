@@ -1,0 +1,14 @@
+Package: units
+Type: Package
+Title: Unit conversion features for physical measures
+Version: 0.1.0
+Author: Igor Magdeev
+Maintainer: Igor Magdeev <kicker0205@gmail.com>
+Description: Unit conversion features for physical measures implemented
+ for SI METRIC and American FIELD units of oil&gas industry:
+ - special class "physical" with attribute "unit";
+ - fixed constants;
+ - unit conversion functions.
+License: GPL (>=3)
+LazyData: TRUE
+RoxygenNote: 5.0.1
