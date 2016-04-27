@@ -3,13 +3,13 @@
 \docType{data}
 \name{ad_US}
 \alias{ad_US}
-\title{Standard air density}
+\title{Built-in constant: standard air density}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 ad_US
 }
 \description{
-Standard air density at FIELD standard conditions, [lb/ft3]
+Standard air density at FIELD standard conditions, 0.076362 [lb/ft3]
 }
 \keyword{datasets}
 

@@ -3,13 +3,13 @@
 \docType{data}
 \name{TC_TK}
 \alias{TC_TK}
-\title{Celsius to Kelvin temperature constant}
+\title{Built-in constant: Celsius to Kelvin temperature}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 TC_TK
 }
 \description{
-Celsius to Kelvin temperature constant
+Celsius to Kelvin temperature constant: 273.15 degrees
 }
 \keyword{datasets}
 

@@ -4,63 +4,63 @@
 ####################################
 # Section 0: Constants             #
 ####################################
-#' @title Air molecular mass
-#' @description Air molecular mass, [g/mole]
+#' @title Built-in constant: Air molecular mass
+#' @description Air molecular mass, 28.967 [g/mole]
 #' @export
 MWair <- 28.967        # g/mole, (C. Whitson, Ch.3, p.22)
 
-#' @title Universal gas constant
-#' @description Universal gas constant in SI units, [J/(mole*K)]
+#' @title Built-in constant: Universal gas constant
+#' @description Universal gas constant in SI units, 8.3144621 [J/(mole*K)]
 #' @export
 R_SI <- 8.3144621      # Joule / (mole * Kelvin)
 
-#' @title Universal gas constant
-#' @description Universal gas constant in American FIELD units, [psi*ft3/(lb-mole*R)]
+#' @title Built-in constant: Universal gas constant
+#' @description Universal gas constant in American FIELD units, 10.7315 [psi*ft3/(lb-mole*R)]
 #' @export
 R_US <- 10.7315        # psia * ft^3 / (lb-mole * Rankine)
 
-#' @title Rankine to Farenheit temperature constant
-#' @description Rankine to Farenheit temperature constant
+#' @title Built-in constant: Rankine to Farenheit temperature
+#' @description Rankine to Farenheit temperature constant: 459.67 degrees
 #' @export
 TF_TR <- 459.67        # degree Rankine to Farenheit
 
-#' @title Celsius to Kelvin temperature constant
-#' @description Celsius to Kelvin temperature constant
+#' @title Built-in constant: Celsius to Kelvin temperature
+#' @description Celsius to Kelvin temperature constant: 273.15 degrees
 #' @export
 TC_TK <- 273.15        # degree Kelvin to Celsius
 
-#' @title Standard pressure
-#' @description Standard pressure is METRIC units, [bar]
+#' @title Built-in constant: standard pressure
+#' @description Standard pressure is METRIC units, 1.01325 [bar]
 #' @export
 Psc_SI <- 1.01325      # Standard pressure, metric units
 
-#' @title Standard temperature
-#' @description Standard temperature is METRIC units, [K]
+#' @title Built-in constant: standard temperature
+#' @description Standard temperature is METRIC units, 293.15 [K]
 #' @export
 Tsc_SI <- 20 + TC_TK  # Standard temperature, metric units
 
-#' @title Standard pressure
-#' @description Standard pressure is FIELD units, [psia]
+#' @title Built-in constant: standard pressure
+#' @description Standard pressure is FIELD units, 14.696 [psia]
 #' @export
 Psc_US <- 14.696       # Standard pressure, US oilfield units
 
-#' @title Standard temperature
-#' @description Standard temperature is FIELD units, [R]
+#' @title Built-in constant: standard temperature
+#' @description Standard temperature is FIELD units, 519.67 [R]
 #' @export
 Tsc_US <- 60 + TF_TR  # Standard temperature, US oilfield units
 
-#' @title Standard water density
-#' @description Standard water density at FIELD standard conditions, [lb/ft3]
+#' @title Built-in constant: standard water density
+#' @description Standard water density at FIELD standard conditions, 62.3664 [lb/ft3]
 #' @export
 wd_US <- 62.3664       # 14.696 psia, 60 F
 
-#' @title Standard air density
-#' @description Standard air density at FIELD standard conditions, [lb/ft3]
+#' @title Built-in constant: standard air density
+#' @description Standard air density at FIELD standard conditions, 0.076362 [lb/ft3]
 #' @export
 ad_US <- 0.076362      # 14.696 psia, 60 F
 
-#' @title Standard air density
-#' @description Standard air density at METRIC standard conditions, [kg/m3]
+#' @title Built-in constant: standard air density
+#' @description Standard air density at METRIC standard conditions, 1.2232 [kg/m3]
 #' @export
 ad_SI <- 1.2232        # 1 atm, 20 C
 

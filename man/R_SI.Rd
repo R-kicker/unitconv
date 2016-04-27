@@ -3,13 +3,13 @@
 \docType{data}
 \name{R_SI}
 \alias{R_SI}
-\title{Universal gas constant}
+\title{Built-in constant: Universal gas constant}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 R_SI
 }
 \description{
-Universal gas constant in SI units, [J/(mole*K)]
+Universal gas constant in SI units, 8.3144621 [J/(mole*K)]
 }
 \keyword{datasets}
 

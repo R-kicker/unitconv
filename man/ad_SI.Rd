@@ -3,13 +3,13 @@
 \docType{data}
 \name{ad_SI}
 \alias{ad_SI}
-\title{Standard air density}
+\title{Built-in constant: standard air density}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 ad_SI
 }
 \description{
-Standard air density at METRIC standard conditions, [kg/m3]
+Standard air density at METRIC standard conditions, 1.2232 [kg/m3]
 }
 \keyword{datasets}
 

@@ -3,13 +3,13 @@
 \docType{data}
 \name{MWair}
 \alias{MWair}
-\title{Air molecular mass}
+\title{Built-in constant: Air molecular mass}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 MWair
 }
 \description{
-Air molecular mass, [g/mole]
+Air molecular mass, 28.967 [g/mole]
 }
 \keyword{datasets}
 

@@ -3,13 +3,13 @@
 \docType{data}
 \name{Tsc_US}
 \alias{Tsc_US}
-\title{Standard temperature}
+\title{Built-in constant: standard temperature}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 Tsc_US
 }
 \description{
-Standard temperature is FIELD units, [R]
+Standard temperature is FIELD units, 519.67 [R]
 }
 \keyword{datasets}
 

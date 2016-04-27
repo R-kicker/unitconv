@@ -3,13 +3,13 @@
 \docType{data}
 \name{TF_TR}
 \alias{TF_TR}
-\title{Rankine to Farenheit temperature constant}
+\title{Built-in constant: Rankine to Farenheit temperature}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 TF_TR
 }
 \description{
-Rankine to Farenheit temperature constant
+Rankine to Farenheit temperature constant: 459.67 degrees
 }
 \keyword{datasets}
 

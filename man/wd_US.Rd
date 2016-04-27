@@ -3,13 +3,13 @@
 \docType{data}
 \name{wd_US}
 \alias{wd_US}
-\title{Standard water density}
+\title{Built-in constant: standard water density}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 wd_US
 }
 \description{
-Standard water density at FIELD standard conditions, [lb/ft3]
+Standard water density at FIELD standard conditions, 62.3664 [lb/ft3]
 }
 \keyword{datasets}
 

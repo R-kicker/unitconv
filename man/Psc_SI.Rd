@@ -3,13 +3,13 @@
 \docType{data}
 \name{Psc_SI}
 \alias{Psc_SI}
-\title{Standard pressure}
+\title{Built-in constant: standard pressure}
 \format{An object of class \code{numeric} of length 1.}
 \usage{
 Psc_SI
 }
 \description{
-Standard pressure is METRIC units, [bar]
+Standard pressure is METRIC units, 1.01325 [bar]
 }
 \keyword{datasets}
 
