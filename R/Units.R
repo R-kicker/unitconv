@@ -179,7 +179,7 @@ Pressure <- function()
 Density <- function()
   list(
     units = c("g/cm3", "kg/m3", "lb/ft3"),
-    const = c(1e3, 1, 1/lb_kg/((1/ft_m)^3))
+    const = c(1e-3, 1, 1/lb_kg/((1/ft_m)^3))
   )
 
 #' @title Whole unit list of functions
@@ -295,10 +295,10 @@ R_to_C <- function (x) {
 #' @description Density conversion: METRIC [kg/m3] to FIELD [API]
 #' @param x A quantity to convert from, [kg/m3]
 #' @return Converted quantity, [API]
-#' @examples kgm3_to_API(850)
+#' @examples kgm3_to_API(865)
 #' @export
 kgm3_to_API <- function (x) {
-  u(141.5 / uc(x, "g/cm3", "kg/m3") - 131.5, "API")
+  u(141.5 / uc(x, "kg/m3", "g/cm3") - 131.5, "API")
 }
 
 #' @title Density conversion

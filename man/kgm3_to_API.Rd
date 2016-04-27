@@ -16,6 +16,6 @@ Converted quantity, [API]
 Density conversion: METRIC [kg/m3] to FIELD [API]
 }
 \examples{
-kgm3_to_API(850)
+kgm3_to_API(865)
 }
 
