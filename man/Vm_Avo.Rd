@@ -10,4 +10,7 @@ Vm_Avo()
 Molar volume in METRIC units [l] per 1 g-mole
  as per Avogadro law - i.e. T=0 C and p=1 atm = 1.01325 bar
 }
+\examples{
+ Vm_Avo()
+}
 

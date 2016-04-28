@@ -10,4 +10,7 @@ Vm_SI()
 Molar volume in METRIC units [l] per 1 g-mole
  at FIELD standard conditions(!) - i.e. T=60 F and p=14.696 psia
 }
+\examples{
+ Vm_SI()
+}
 
