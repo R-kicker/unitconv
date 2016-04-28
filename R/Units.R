@@ -64,6 +64,26 @@ ad_US <- 0.076362      # 14.696 psia, 60 F
 #' @export
 ad_SI <- 1.2232        # 1 atm, 20 C
 
+#' @title Molar volume in METRIC units
+#' @description Molar volume in METRIC units [l] per 1 g-mole
+#'  as per Avogadro law - i.e. T=0 C and p=1 atm = 1.01325 bar
+#' @export
+Vm_Avo <- function()
+  return(22.413962)    # 1 atm, 0 C
+
+#' @title Molar volume in METRIC units
+#' @description Molar volume in METRIC units [l] per 1 g-mole
+#'  at FIELD standard conditions(!) - i.e. T=60 F and p=14.696 psia
+#' @export
+Vm_SI <- function()
+  return(23.70336)     # 14.696 psia, 60 F
+
+#' @title Molar volume in FIELD units
+#' @description Molar volume in FIELD units [scf] per 1 lb-mole
+#' @export
+Vm_US <- function()
+  u(uc(Vm_SI, "l", "ft3") * uc(1, "lb", "g"), "scf")
+
 ####################################
 # Section 1: Conversion factors    #
 ####################################
