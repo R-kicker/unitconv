@@ -10,6 +10,6 @@ Volume()
 Volume unit list
 }
 \details{
-Valid units: "cm3", "l", "m3", "bbl" (barrel) and "ft3"
+Valid units: "cm3", "l", "gal", "m3", "bbl" (barrel) and "ft3"
 }
 

@@ -18,7 +18,7 @@ Prints to console x with "unit" at the beginning of the vector
 Generic function: print physical measure
 }
 \examples{
- z <- round(runif(10)*100, 0)
+ z <- round(runif(10)*100, 1)
  print(u(z, "mD"))
 }
 

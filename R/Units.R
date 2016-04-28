@@ -81,7 +81,7 @@ ft_m <- 0.3048
 #' @title Important conversion factors apart from unit lists
 #' @description Volume: barrel [bbl] to cubic feet [ft3] conversion factor
 #' @export
-bbl_ft3 <- 5.615
+bbl_ft3 <- 1 / 0.1781076
 
 #' @title Important conversion factors apart from unit lists
 #' @description Area: millidarcy [mD] to square meter [m2] conversion factor
@@ -112,6 +112,11 @@ atm_mmHg <- 760.0008
 #' @description Energy: British thermal unit [BTU] to Joule/mole [J/mole] conversion factor
 #' @export
 BTU_Jmol <- 2236
+
+#' @title Important conversion factors apart from unit lists
+#' @description Time: day to second conversion
+#' @export
+day_s <- 24*60*60
 
 ####################################
 # Section 2: Unit lists            #
@@ -151,12 +156,12 @@ Area <- function()
 
 #' @title Volume unit list
 #' @description Volume unit list
-#' @details Valid units: "cm3", "l", "m3", "bbl" (barrel) and "ft3"
+#' @details Valid units: "cm3", "l", "gal", "m3", "bbl" (barrel) and "ft3"
 #' @export
 Volume <- function()
   list(
-    units = c("cm3", "l", "m3", "bbl", "ft3"),
-    const = c(1e6, 1e3, 1, 1/0.1589873, (1/0.3048)^3)
+    units = c("cm3", "l", "gal", "m3", "bbl", "ft3"),
+    const = c(1e6, 1e3, 3.785411784e3, 1, 1/0.1589873, (1/ft_m)^3)
   )
 
 #' @title Pressure unit list
@@ -182,12 +187,22 @@ Density <- function()
     const = c(1e-3, 1, 1/lb_kg/((1/ft_m)^3))
   )
 
+#' @title Dynamic Viscosity unit list
+#' @description Dynamic Viscosity unit list
+#' @details Valid units: "mkP", "cP", "P and "Pa*s"
+#' @export
+DynViscosity <- function()
+  list(
+    units = c("mkP", "cP", "P", "Pa*s"),
+    const = c(1e4, 1, 1e-2, 1e-3)
+  )
+
 #' @title Whole unit list of functions
 #' @description Whole unit list of functions
 #' @export
 measurelist <- function()
   c(Mass = Mass, Length = Length, Area = Area, Volume = Volume,
-    Pressure = Pressure, Density = Density)
+    Pressure = Pressure, Density = Density, DynVisc = DynViscosity)
 
 ####################################
 # Section 3: Conversion functions  #
@@ -215,6 +230,7 @@ measurelist <- function()
 #'  uc(1, "ft3", "cm3")
 #'  uc(1, "bbl", "l")
 #'  uc(150, "m", "km") + u(1:5, "km")
+#'  uc(1.5, "cP", "Pa*s")
 #'  # Example below with correct units
 #'  uc(1, "kg/m3", "lb/ft3")
 #'  # Example below with incorrect units causes an error
@@ -371,6 +387,28 @@ MPa_psi <- function (x) {
   uc(x, "MPa", "psi")
 }
 
+#' @title Gas-liquid ratio conversion
+#' @description Gas-liquid ratio conversion: METRIC [m3/m3] to FIELD [scf/STB]
+#' @param x A quantity to convert from (numeric vector), [m3/m3]
+#' @return Converted quantity (numeric vector), [scf/STB]
+#' @examples
+#'  GLR_US(c(85, 110))
+#' @export
+GLR_US <- function(x) {
+  x * u(uc(1, "m3", "ft3") / uc(1, "m3", "bbl"), "scf/STB")
+}
+
+#' @title Gas-liquid ratio conversion
+#' @description Gas-liquid ratio conversion: FIELD [scf/STB] to METRIC [m3/m3]
+#' @param x A quantity to convert from (numeric vector), [scf/STB]
+#' @return Converted quantity (numeric vector), [m3/m3]
+#' @examples
+#'  GLR_SI(c(500, 1100))
+#' @export
+GLR_SI <- function(x) {
+  x * u(1 / GLR_US(1), "m3/m3")
+}
+
 ####################################
 # Section 4: Generic functions     #
 ####################################
@@ -392,7 +430,7 @@ is.physical <- function (x) {
 #' @param ... Optional arguments to be passed further
 #' @return Prints to console x with "unit" at the beginning of the vector
 #' @examples
-#'  z <- round(runif(10)*100, 0)
+#'  z <- round(runif(10)*100, 1)
 #'  print(u(z, "mD"))
 #' @export
 print.physical <- function(x, ...) {
