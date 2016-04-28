@@ -267,6 +267,21 @@ u <- function(x, unit) {
   structure(x, class = "physical")
 }
 
+#' @title Unit destroy function
+#' @description Removes units from vector of list
+#' @param x A quantity of class "physical"
+#' @return Dimensionless vector or list
+#' @examples
+#'  z1 <- u(list(1, 2, 3), "km")
+#'  print(z1)
+#'  z2 <- un(z1)
+#'  print(z2)
+#' @export
+un <- function(x) {
+  attr(x, "unit") <- NULL
+  unclass(x)
+}
+
 #' @title Temperature conversion
 #' @description Temperature conversion: Celsius to Farenheit
 #' @param x A quantity to convert from, [C]
