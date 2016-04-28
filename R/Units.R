@@ -231,8 +231,8 @@ uc <- function(x, from, to) {
   j <- which(phys()$units == to)
   m <- phys()$const[j] / phys()$const[i]
   z <- sapply(x, `*`, m)
-  uz <- u(z, to)
-  return(uz)
+  if (is.physical(x)) z <- u(z, to)
+  return(z)
 }
 
 #' @title Unit create function
@@ -255,9 +255,9 @@ u <- function(x, unit) {
 #' @description Temperature conversion: Celsius to Farenheit
 #' @param x A quantity to convert from, [C]
 #' @return Converted quantity, [F]
-#' @examples C_to_F(15.6)
+#' @examples C_F(15.6)
 #' @export
-C_to_F <- function (x) {
+C_F <- function (x) {
   u(x * 9 / 5 + 32, "deg.F")
 }
 
@@ -265,9 +265,9 @@ C_to_F <- function (x) {
 #' @description Temperature conversion: Celsius to Rankine
 #' @param x A quantity to convert from, [C]
 #' @return Converted quantity, [R]
-#' @examples C_to_R(15.6)
+#' @examples C_R(15.6)
 #' @export
-C_to_R <- function (x) {
+C_R <- function (x) {
   u(1.8 * (x + TC_TK), "deg.R")
 }
 
@@ -275,9 +275,9 @@ C_to_R <- function (x) {
 #' @description Temperature conversion: Farenheit to Celsius
 #' @param x A quantity to convert from, [F]
 #' @return Converted quantity, [C]
-#' @examples F_to_C(60)
+#' @examples F_C(60)
 #' @export
-F_to_C <- function (x) {
+F_C <- function (x) {
   u((x - 32) * 5 / 9, "deg.C")
 }
 
@@ -285,30 +285,50 @@ F_to_C <- function (x) {
 #' @description Temperature conversion: Rankine to Celsius
 #' @param x A quantity to convert from, [F]
 #' @return Converted quantity, [C]
-#' @examples R_to_C(60 + TF_TR)
+#' @examples R_C(60 + TF_TR)
 #' @export
-R_to_C <- function (x) {
+R_C <- function (x) {
   u(x / 1.8 - TC_TK, "deg.C")
 }
 
-#' @title Density conversion
+#' @title Density - Gravity conversion
 #' @description Density conversion: METRIC [kg/m3] to FIELD [API]
 #' @param x A quantity to convert from, [kg/m3]
 #' @return Converted quantity, [API]
-#' @examples kgm3_to_API(865)
+#' @examples kgm3_API(865)
 #' @export
-kgm3_to_API <- function (x) {
-  u(141.5 / uc(x, "kg/m3", "g/cm3") - 131.5, "API")
+kgm3_API <- function (x) {
+  u(gcc_API(x), "API")
 }
 
-#' @title Density conversion
+#' @title Density - Gravity conversion
 #' @description Density conversion: FIELD [API] to METRIC [kg/m3]
 #' @param x A quantity to convert from, [API]
 #' @return Converted quantity, [kg/m3]
-#' @examples API_to_kgm3(32)
+#' @examples API_kgm3(32)
 #' @export
-API_to_kgm3 <- function (x) {
-  uc(141.5 / (131.5 + x), "g/cm3", "kg/m3")
+API_kgm3 <- function (x) {
+  uc(API_gcc(x), "g/cm3", "kg/m3")
+}
+
+#' @title Density - Gravity conversion
+#' @description Density conversion: METRIC [g/cm3] (specific gravity) to FIELD [API]
+#' @param x A quantity to convert from, [g/cm3]
+#' @return Converted quantity, [API]
+#' @examples gcc_API(0.865)
+#' @export
+gcc_API <- function(x) {
+  u(141.5 / x - 131.5, "API")
+}
+
+#' @title Density - Gravity conversion
+#' @description Density conversion: FIELD [API] to METRIC [g/cm3] (specific gravity)
+#' @param x A quantity to convert from, [API]
+#' @return Converted quantity, [g/cm3]
+#' @examples API_gcc(32)
+#' @export
+API_gcc <- function(x) {
+  u(141.5 / (131.5 + x), "g/cm3")
 }
 
 #' @title Pressure conversion
