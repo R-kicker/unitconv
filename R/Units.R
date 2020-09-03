@@ -1,9 +1,9 @@
 # 26-04-2016
 # Experimental module for units of physical variables
 
-####################################
-# Section 0: Constants             #
-####################################
+#==================================#
+# Section 0: Constants          ####
+#==================================#
 #' @title Built-in constant: Air molecular mass
 #' @description Air molecular mass, 28.967 [g/mole]
 #' @export
@@ -90,9 +90,9 @@ Vm_SI <- function()
 Vm_US <- function()
   u(uc(Vm_SI(), "l", "ft3") * uc(1, "lb", "g"), "scf")
 
-####################################
-# Section 1: Conversion factors    #
-####################################
+#==================================#
+# Section 1: Conversion factors ####
+#==================================#
 
 #' @title Important conversion factors apart from unit lists
 #' @description Mass: pound [lb] to [kg] conversion factor
@@ -144,9 +144,9 @@ BTU_Jmol <- 2236
 #' @export
 day_s <- 24*60*60
 
-####################################
-# Section 2: Unit lists            #
-####################################
+#==================================#
+# Section 2: Unit lists         ####
+#==================================#
 #' @title Mass unit list
 #' @description Mass unit list
 #' @details Valid units: "mkg", "mg", "g", "kg", "ton", "lb" (pound) and "ou" (ounce)
@@ -230,9 +230,9 @@ measurelist <- function()
   c(Mass = Mass, Length = Length, Area = Area, Volume = Volume,
     Pressure = Pressure, Density = Density, DynVisc = DynViscosity)
 
-####################################
-# Section 3: Conversion functions  #
-####################################
+#==================================#
+# Section 3: Conversion functions####
+#==================================#
 #' @title Unit conversion function
 #' @description Unit conversion function "from"-"to"
 #' @references
@@ -252,10 +252,11 @@ measurelist <- function()
 #'  uc(1, "mkm2", "mD")
 #'  uc(u(1:5, "kg"), "kg", "lb")
 #'  uc(u(list(1, 2), "ton"), "ton", "lb")
+#'  uc(u(data.frame(x1 = 1:3, x2 = 4:6), "ft3"), "ft3", "cm3")
 #'  uc(1, "ft3", "l")
 #'  uc(1, "ft3", "cm3")
 #'  uc(1, "bbl", "l")
-#'  uc(150, "m", "km") + u(1:5, "km")
+#'  uc(150, "m", "km") + u(c(1.0, 2.0, 3.5), "km")
 #'  uc(1.5, "cP", "Pa*s")
 #'  # Example below with correct units
 #'  uc(1, "kg/m3", "lb/ft3")
@@ -263,16 +264,25 @@ measurelist <- function()
 #'  \dontrun{uc(1, "kg/m3", "lbft3")}
 #' @export
 uc <- function(x, from, to) {
-  validunits <- unlist(sapply(X = measurelist(), FUN = function(f) f()$units))
+  validunits <-
+    unlist(sapply(X = measurelist(), FUN = function(f) f()$units))
   if (!((from %in% validunits) & (to %in% validunits))) stop("Invalid units input")
   lf <- sapply(X = measurelist(),
-               FUN = function(f, x) if(x %in% f()$units) f else NULL,
+               FUN = function(f, x) if (x %in% f()$units) f else NULL,
                x = from)
   phys <- lf[[which(sapply(X = lf, FUN = function(f) is.null(f)) == FALSE)]]
   i <- which(phys()$units == from)
   j <- which(phys()$units == to)
   m <- phys()$const[j] / phys()$const[i]
-  z <- sapply(x, `*`, m)
+  # which **ply function we shall use ??
+  if (is.data.frame(x)) {
+    # is this OK?
+    z <- as.data.frame(sapply(x, `*`, m))
+  } else if (is.list(x)) {
+    z <- lapply(x, `*`, m)
+  } else {
+    z <- sapply(x, `*`, m)
+  }
   if (is.physical(x)) z <- u(z, to)
   return(z)
 }
@@ -290,7 +300,8 @@ uc <- function(x, from, to) {
 #' @export
 u <- function(x, unit) {
   attr(x, "unit") <- unit
-  structure(x, class = "physical")
+  # !!! Need to preserve existing S3 class attribute
+  structure(x, class = c(class(x), "physical"))
 }
 
 #' @title Unit destroy function
@@ -305,7 +316,11 @@ u <- function(x, unit) {
 #' @export
 un <- function(x) {
   attr(x, "unit") <- NULL
-  unclass(x)
+  # unclass(x) - this is weird!!! destroys all classes
+  # need to preserve existing S3 classes
+  cl <- class(x)
+  class(x) <- cl[setdiff(seq_along(cl), which(cl == "physical"))]
+  return(x)
 }
 
 #' @title Temperature conversion
@@ -314,7 +329,7 @@ un <- function(x) {
 #' @return Converted quantity, [F]
 #' @examples C_F(15.6)
 #' @export
-C_F <- function (x) {
+C_F <- function(x) {
   u(x * 9 / 5 + 32, "deg.F")
 }
 
@@ -324,7 +339,7 @@ C_F <- function (x) {
 #' @return Converted quantity, [R]
 #' @examples C_R(15.6)
 #' @export
-C_R <- function (x) {
+C_R <- function(x) {
   u(1.8 * (x + TC_TK), "deg.R")
 }
 
@@ -334,7 +349,7 @@ C_R <- function (x) {
 #' @return Converted quantity, [C]
 #' @examples F_C(60)
 #' @export
-F_C <- function (x) {
+F_C <- function(x) {
   u((x - 32) * 5 / 9, "deg.C")
 }
 
@@ -344,7 +359,7 @@ F_C <- function (x) {
 #' @return Converted quantity, [C]
 #' @examples R_C(60 + TF_TR)
 #' @export
-R_C <- function (x) {
+R_C <- function(x) {
   u(x / 1.8 - TC_TK, "deg.C")
 }
 
@@ -354,7 +369,7 @@ R_C <- function (x) {
 #' @return Converted quantity, [API]
 #' @examples kgm3_API(865)
 #' @export
-kgm3_API <- function (x) {
+kgm3_API <- function(x) {
   u(gcc_API(x), "API")
 }
 
@@ -364,7 +379,7 @@ kgm3_API <- function (x) {
 #' @return Converted quantity, [kg/m3]
 #' @examples API_kgm3(32)
 #' @export
-API_kgm3 <- function (x) {
+API_kgm3 <- function(x) {
   uc(API_gcc(x), "g/cm3", "kg/m3")
 }
 
@@ -394,7 +409,7 @@ API_gcc <- function(x) {
 #' @return Converted quantity, [bar]
 #' @examples psi_bar(32)
 #' @export
-psi_bar <- function (x) {
+psi_bar <- function(x) {
   uc(x, "psi", "bar")
 }
 
@@ -404,7 +419,7 @@ psi_bar <- function (x) {
 #' @return Converted quantity, [psi]
 #' @examples bar_psi(32)
 #' @export
-bar_psi <- function (x) {
+bar_psi <- function(x) {
   uc(x, "bar", "psi")
 }
 
@@ -414,7 +429,7 @@ bar_psi <- function (x) {
 #' @return Converted quantity, [MPa]
 #' @examples psi_MPa(32)
 #' @export
-psi_MPa <- function (x) {
+psi_MPa <- function(x) {
   uc(x, "psi", "MPa")
 }
 
@@ -424,7 +439,7 @@ psi_MPa <- function (x) {
 #' @return Converted quantity, [psi]
 #' @examples MPa_psi(32)
 #' @export
-MPa_psi <- function (x) {
+MPa_psi <- function(x) {
   uc(x, "MPa", "psi")
 }
 
@@ -450,9 +465,9 @@ GLR_SI <- function(x) {
   x * u(1 / GLR_US(1), "m3/m3")
 }
 
-####################################
-# Section 4: Generic functions     #
-####################################
+#==================================#
+# Section 4: Generic functions  ####
+#==================================#
 #' @title Generic function: check physical measure
 #' @description Generic function: check physical measure
 #' @param x A quantity to check
@@ -461,44 +476,32 @@ GLR_SI <- function(x) {
 #'  is.physical(32)
 #'  is.physical(u(32, "deg.C"))
 #' @export
-is.physical <- function (x) {
-  return(class(x) == "physical")
+is.physical <- function(x) {
+  return(any(class(x) == "physical"))
 }
 
 #' @title Generic function: print physical measure
 #' @description Generic function: print physical measure
 #' @param x A quantity to print
 #' @param ... Optional arguments to be passed further
-#' @return Prints to console x with "unit" at the beginning of the vector
+#' @return Prints to console x with "Units: " at the beginning of the object output
 #' @examples
 #'  z <- round(runif(10)*100, 1)
 #'  print(u(z, "mD"))
 #' @export
 print.physical <- function(x, ...) {
   uattr <- attr(x, "unit")
-  attr(x, "unit") <- NULL
-  print(uattr)
-  print(unclass(x), ...)
-  #cat(uattr, ":", unclass(x))
+  if (is.null(uattr)) {
+    uattr <- "N/A"
+  } else {
+    attr(x, "unit") <- NULL
+  }
+  print(paste0("Units: ", uattr))
+  # don't use unclass! - a weird way
+  print(un(x), ...)
 }
 
-####################################
-# Section 5: EXAMPLES              #
-####################################
-# u(1:5, "km")
-# u(1:5, "km") + uc(150, "m", "km")
-# uc(1, "mkm2", "D", area)
-# uc(1, "mkm2", "mD", area)
-#
-# u(1.5, "lb")
-# u(list(1, 2), "kg")
-# uc(u(1:5, "kg"), "kg", "lb", mass)
-# uc(u(list(1, 2), "ton"), "ton", "lb", mass)
-#
-# uc(1, "ft3", "l", volume)
-# uc(1, "ft3", "cm3", volume)
-# uc(1, "bbl", "l", volume)
-#
-# z <- u(c(15, 20, 25), "deg.C")
-# print(z)
-
+#==================================#
+# Section 5: EXAMPLES           ####
+#==================================#
+# !!! moved to "testthat" directory !!!
