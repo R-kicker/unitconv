@@ -11,6 +11,7 @@ Description: Unit conversion features for physical measures implemented
  - unit conversion functions.
 License: GPL (>=3)
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 7.1.1
+Encoding: UTF-8
 Suggests: 
     testthat

@@ -77,6 +77,7 @@ Vm_Avo <- function()
 #' @description Molar volume in METRIC units [l] per 1 g-mole
 #'  at FIELD standard conditions(!) - i.e. T=60 F and p=14.696 psia
 #' @examples
+#'  library(unitconv)
 #'  Vm_SI()
 #' @export
 Vm_SI <- function()
@@ -85,6 +86,7 @@ Vm_SI <- function()
 #' @title Molar volume in FIELD units
 #' @description Molar volume in FIELD units [scf] per 1 lb-mole
 #' @examples
+#'  library(unitconv)
 #'  Vm_US()
 #' @export
 Vm_US <- function()
@@ -248,6 +250,7 @@ measurelist <- function()
 #' @param to Valid unit name (character)
 #' @return Converted quantity (atomic vector or list as per input)
 #' @examples
+#'  library(unitconv)
 #'  uc(1, "mkm2", "D")
 #'  uc(1, "mkm2", "mD")
 #'  uc(u(1:5, "kg"), "kg", "lb")
@@ -293,6 +296,7 @@ uc <- function(x, from, to) {
 #' @param unit Valid unit name
 #' @return Object of class "physical"
 #' @examples
+#'  library(unitconv)
 #'  z1 <- u(1:5, "km")
 #'  print(z1)
 #'  z2 <- u(list(1, 2), "kg")
@@ -309,6 +313,7 @@ u <- function(x, unit) {
 #' @param x A quantity of class "physical"
 #' @return Dimensionless vector or list
 #' @examples
+#'  library(unitconv)
 #'  z1 <- u(list(1, 2, 3), "km")
 #'  print(z1)
 #'  z2 <- un(z1)
@@ -327,7 +332,9 @@ un <- function(x) {
 #' @description Temperature conversion: Celsius to Farenheit
 #' @param x A quantity to convert from, [C]
 #' @return Converted quantity, [F]
-#' @examples C_F(15.6)
+#' @examples
+#'  library(unitconv)
+#'  C_F(15.6)
 #' @export
 C_F <- function(x) {
   u(x * 9 / 5 + 32, "deg.F")
@@ -337,7 +344,9 @@ C_F <- function(x) {
 #' @description Temperature conversion: Celsius to Rankine
 #' @param x A quantity to convert from, [C]
 #' @return Converted quantity, [R]
-#' @examples C_R(15.6)
+#' @examples
+#'  library(unitconv)
+#'  C_R(15.6)
 #' @export
 C_R <- function(x) {
   u(1.8 * (x + TC_TK), "deg.R")
@@ -347,7 +356,9 @@ C_R <- function(x) {
 #' @description Temperature conversion: Farenheit to Celsius
 #' @param x A quantity to convert from, [F]
 #' @return Converted quantity, [C]
-#' @examples F_C(60)
+#' @examples
+#'  library(unitconv)
+#'  F_C(60)
 #' @export
 F_C <- function(x) {
   u((x - 32) * 5 / 9, "deg.C")
@@ -357,7 +368,9 @@ F_C <- function(x) {
 #' @description Temperature conversion: Rankine to Celsius
 #' @param x A quantity to convert from, [F]
 #' @return Converted quantity, [C]
-#' @examples R_C(60 + TF_TR)
+#' @examples
+#'  library(unitconv)
+#'  R_C(60 + TF_TR)
 #' @export
 R_C <- function(x) {
   u(x / 1.8 - TC_TK, "deg.C")
@@ -367,7 +380,9 @@ R_C <- function(x) {
 #' @description Density conversion: METRIC [kg/m3] to FIELD [API]
 #' @param x A quantity to convert from, [kg/m3]
 #' @return Converted quantity, [API]
-#' @examples kgm3_API(865)
+#' @examples
+#'  library(unitconv)
+#'  kgm3_API(865)
 #' @export
 kgm3_API <- function(x) {
   u(gcc_API(x), "API")
@@ -377,7 +392,9 @@ kgm3_API <- function(x) {
 #' @description Density conversion: FIELD [API] to METRIC [kg/m3]
 #' @param x A quantity to convert from, [API]
 #' @return Converted quantity, [kg/m3]
-#' @examples API_kgm3(32)
+#' @examples
+#'  library(unitconv)
+#'  API_kgm3(32)
 #' @export
 API_kgm3 <- function(x) {
   uc(API_gcc(x), "g/cm3", "kg/m3")
@@ -387,7 +404,9 @@ API_kgm3 <- function(x) {
 #' @description Density conversion: METRIC [g/cm3] (specific gravity) to FIELD [API]
 #' @param x A quantity to convert from, [g/cm3]
 #' @return Converted quantity, [API]
-#' @examples gcc_API(0.865)
+#' @examples
+#'  library(unitconv)
+#'  gcc_API(0.865)
 #' @export
 gcc_API <- function(x) {
   u(141.5 / x - 131.5, "API")
@@ -397,7 +416,9 @@ gcc_API <- function(x) {
 #' @description Density conversion: FIELD [API] to METRIC [g/cm3] (specific gravity)
 #' @param x A quantity to convert from, [API]
 #' @return Converted quantity, [g/cm3]
-#' @examples API_gcc(32)
+#' @examples
+#'  library(unitconv)
+#'  API_gcc(32)
 #' @export
 API_gcc <- function(x) {
   u(141.5 / (131.5 + x), "g/cm3")
@@ -407,7 +428,9 @@ API_gcc <- function(x) {
 #' @description Pressure conversion: FIELD [psi] to METRIC [bar]
 #' @param x A quantity to convert from, [psi]
 #' @return Converted quantity, [bar]
-#' @examples psi_bar(32)
+#' @examples
+#'  library(unitconv)
+#'  psi_bar(32)
 #' @export
 psi_bar <- function(x) {
   uc(x, "psi", "bar")
@@ -417,7 +440,9 @@ psi_bar <- function(x) {
 #' @description Pressure conversion: METRIC [bar] to FIELD [psi]
 #' @param x A quantity to convert from, [bar]
 #' @return Converted quantity, [psi]
-#' @examples bar_psi(32)
+#' @examples
+#'  library(unitconv)
+#'  bar_psi(32)
 #' @export
 bar_psi <- function(x) {
   uc(x, "bar", "psi")
@@ -427,7 +452,9 @@ bar_psi <- function(x) {
 #' @description Pressure conversion: FIELD [psi] to METRIC [MPa]
 #' @param x A quantity to convert from, [psi]
 #' @return Converted quantity, [MPa]
-#' @examples psi_MPa(32)
+#' @examples
+#'  library(unitconv)
+#'  psi_MPa(32)
 #' @export
 psi_MPa <- function(x) {
   uc(x, "psi", "MPa")
@@ -437,7 +464,9 @@ psi_MPa <- function(x) {
 #' @description Pressure conversion: METRIC [MPa] to FIELD [psi]
 #' @param x A quantity to convert from, [MPa]
 #' @return Converted quantity, [psi]
-#' @examples MPa_psi(32)
+#' @examples
+#'  library(unitconv)
+#'  MPa_psi(32)
 #' @export
 MPa_psi <- function(x) {
   uc(x, "MPa", "psi")
@@ -448,6 +477,7 @@ MPa_psi <- function(x) {
 #' @param x A quantity to convert from (numeric vector), [m3/m3]
 #' @return Converted quantity (numeric vector), [scf/STB]
 #' @examples
+#'  library(unitconv)
 #'  GLR_US(c(85, 110))
 #' @export
 GLR_US <- function(x) {
@@ -459,6 +489,7 @@ GLR_US <- function(x) {
 #' @param x A quantity to convert from (numeric vector), [scf/STB]
 #' @return Converted quantity (numeric vector), [m3/m3]
 #' @examples
+#'  library(unitconv)
 #'  GLR_SI(c(500, 1100))
 #' @export
 GLR_SI <- function(x) {
@@ -473,6 +504,7 @@ GLR_SI <- function(x) {
 #' @param x A quantity to check
 #' @return TRUE or FALSE whether x is an object of class "physical"
 #' @examples
+#'  library(unitconv)
 #'  is.physical(32)
 #'  is.physical(u(32, "deg.C"))
 #' @export
@@ -486,6 +518,7 @@ is.physical <- function(x) {
 #' @param ... Optional arguments to be passed further
 #' @return Prints to console x with "Units: " at the beginning of the object output
 #' @examples
+#'  library(unitconv)
 #'  z <- round(runif(10)*100, 1)
 #'  print(u(z, "mD"))
 #' @export
