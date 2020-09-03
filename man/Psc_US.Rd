@@ -4,7 +4,9 @@
 \name{Psc_US}
 \alias{Psc_US}
 \title{Built-in constant: standard pressure}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 Psc_US
 }
@@ -12,4 +14,3 @@ Psc_US
 Standard pressure is FIELD units, 14.696 [psia]
 }
 \keyword{datasets}
-

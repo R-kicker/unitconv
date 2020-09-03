@@ -18,4 +18,3 @@ Density conversion: FIELD [API] to METRIC [g/cm3] (specific gravity)
 \examples{
 API_gcc(32)
 }
-

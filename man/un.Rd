@@ -21,4 +21,3 @@ Removes units from vector of list
  z2 <- un(z1)
  print(z2)
 }
-

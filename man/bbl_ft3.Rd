@@ -4,7 +4,9 @@
 \name{bbl_ft3}
 \alias{bbl_ft3}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 bbl_ft3
 }
@@ -12,4 +14,3 @@ bbl_ft3
 Volume: barrel [bbl] to cubic feet [ft3] conversion factor
 }
 \keyword{datasets}
-

@@ -4,7 +4,9 @@
 \name{atm_ata}
 \alias{atm_ata}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 atm_ata
 }
@@ -12,4 +14,3 @@ atm_ata
 Pressure: atmposphere [atm] to absolute atmposphere [ata] conversion factor
 }
 \keyword{datasets}
-

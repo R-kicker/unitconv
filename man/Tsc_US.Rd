@@ -4,7 +4,9 @@
 \name{Tsc_US}
 \alias{Tsc_US}
 \title{Built-in constant: standard temperature}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 Tsc_US
 }
@@ -12,4 +14,3 @@ Tsc_US
 Standard temperature is FIELD units, 519.67 [R]
 }
 \keyword{datasets}
-

@@ -4,7 +4,9 @@
 \name{ad_US}
 \alias{ad_US}
 \title{Built-in constant: standard air density}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 ad_US
 }
@@ -12,4 +14,3 @@ ad_US
 Standard air density at FIELD standard conditions, 0.076362 [lb/ft3]
 }
 \keyword{datasets}
-

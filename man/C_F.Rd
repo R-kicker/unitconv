@@ -18,4 +18,3 @@ Temperature conversion: Celsius to Farenheit
 \examples{
 C_F(15.6)
 }
-

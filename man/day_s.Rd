@@ -4,7 +4,9 @@
 \name{day_s}
 \alias{day_s}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 day_s
 }
@@ -12,4 +14,3 @@ day_s
 Time: day to second conversion
 }
 \keyword{datasets}
-

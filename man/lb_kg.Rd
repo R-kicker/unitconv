@@ -4,7 +4,9 @@
 \name{lb_kg}
 \alias{lb_kg}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 lb_kg
 }
@@ -12,4 +14,3 @@ lb_kg
 Mass: pound [lb] to [kg] conversion factor
 }
 \keyword{datasets}
-

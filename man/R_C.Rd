@@ -18,4 +18,3 @@ Temperature conversion: Rankine to Celsius
 \examples{
 R_C(60 + TF_TR)
 }
-

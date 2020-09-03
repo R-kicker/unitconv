@@ -12,4 +12,3 @@ Molar volume in FIELD units [scf] per 1 lb-mole
 \examples{
  Vm_US()
 }
-

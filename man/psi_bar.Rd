@@ -18,4 +18,3 @@ Pressure conversion: FIELD [psi] to METRIC [bar]
 \examples{
 psi_bar(32)
 }
-

@@ -12,4 +12,3 @@ Length unit list
 \details{
 Valid units: "nm", "mkm", "mm", "cm", "dm", "m", "km", "in" and "ft"
 }
-

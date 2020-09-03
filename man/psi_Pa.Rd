@@ -4,7 +4,9 @@
 \name{psi_Pa}
 \alias{psi_Pa}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 psi_Pa
 }
@@ -12,4 +14,3 @@ psi_Pa
 Pressure: psi [psi]=[lb/in2] to Pascal [Pa] conversion factor
 }
 \keyword{datasets}
-

@@ -23,4 +23,3 @@ Creates a class with specified unit
  z2 <- u(list(1, 2), "kg")
  print(z2)
 }
-

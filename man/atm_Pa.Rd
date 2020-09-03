@@ -4,7 +4,9 @@
 \name{atm_Pa}
 \alias{atm_Pa}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 atm_Pa
 }
@@ -12,4 +14,3 @@ atm_Pa
 Pressure: atmposphere [atm] to Pascal [Pa] conversion factor
 }
 \keyword{datasets}
-

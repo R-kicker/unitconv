@@ -4,7 +4,9 @@
 \name{ft_m}
 \alias{ft_m}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 ft_m
 }
@@ -12,4 +14,3 @@ ft_m
 Length: foot [ft] to [m] conversion factor
 }
 \keyword{datasets}
-

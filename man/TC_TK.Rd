@@ -4,7 +4,9 @@
 \name{TC_TK}
 \alias{TC_TK}
 \title{Built-in constant: Celsius to Kelvin temperature}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 TC_TK
 }
@@ -12,4 +14,3 @@ TC_TK
 Celsius to Kelvin temperature constant: 273.15 degrees
 }
 \keyword{datasets}
-

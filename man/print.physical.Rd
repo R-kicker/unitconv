@@ -12,7 +12,7 @@
 \item{...}{Optional arguments to be passed further}
 }
 \value{
-Prints to console x with "unit" at the beginning of the vector
+Prints to console x with "Units: " at the beginning of the object output
 }
 \description{
 Generic function: print physical measure
@@ -21,4 +21,3 @@ Generic function: print physical measure
  z <- round(runif(10)*100, 1)
  print(u(z, "mD"))
 }
-

@@ -18,4 +18,3 @@ Temperature conversion: Farenheit to Celsius
 \examples{
 F_C(60)
 }
-

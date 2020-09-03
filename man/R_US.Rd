@@ -4,7 +4,9 @@
 \name{R_US}
 \alias{R_US}
 \title{Built-in constant: Universal gas constant}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 R_US
 }
@@ -12,4 +14,3 @@ R_US
 Universal gas constant in American FIELD units, 10.7315 [psi*ft3/(lb-mole*R)]
 }
 \keyword{datasets}
-

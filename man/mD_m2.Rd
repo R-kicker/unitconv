@@ -4,7 +4,9 @@
 \name{mD_m2}
 \alias{mD_m2}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 mD_m2
 }
@@ -12,4 +14,3 @@ mD_m2
 Area: millidarcy [mD] to square meter [m2] conversion factor
 }
 \keyword{datasets}
-

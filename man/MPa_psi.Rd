@@ -18,4 +18,3 @@ Pressure conversion: METRIC [MPa] to FIELD [psi]
 \examples{
 MPa_psi(32)
 }
-

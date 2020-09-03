@@ -18,4 +18,3 @@ Density conversion: METRIC [kg/m3] to FIELD [API]
 \examples{
 kgm3_API(865)
 }
-

@@ -4,7 +4,9 @@
 \name{TF_TR}
 \alias{TF_TR}
 \title{Built-in constant: Rankine to Farenheit temperature}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 TF_TR
 }
@@ -12,4 +14,3 @@ TF_TR
 Rankine to Farenheit temperature constant: 459.67 degrees
 }
 \keyword{datasets}
-

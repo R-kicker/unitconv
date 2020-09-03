@@ -4,7 +4,9 @@
 \name{BTU_Jmol}
 \alias{BTU_Jmol}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 BTU_Jmol
 }
@@ -12,4 +14,3 @@ BTU_Jmol
 Energy: British thermal unit [BTU] to Joule/mole [J/mole] conversion factor
 }
 \keyword{datasets}
-

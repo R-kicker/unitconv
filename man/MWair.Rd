@@ -4,7 +4,9 @@
 \name{MWair}
 \alias{MWair}
 \title{Built-in constant: Air molecular mass}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 MWair
 }
@@ -12,4 +14,3 @@ MWair
 Air molecular mass, 28.967 [g/mole]
 }
 \keyword{datasets}
-

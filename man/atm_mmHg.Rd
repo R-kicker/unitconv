@@ -4,7 +4,9 @@
 \name{atm_mmHg}
 \alias{atm_mmHg}
 \title{Important conversion factors apart from unit lists}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 atm_mmHg
 }
@@ -12,4 +14,3 @@ atm_mmHg
 Pressure: atmposphere [atm] to Hg millimeters [mmHg] conversion factor
 }
 \keyword{datasets}
-

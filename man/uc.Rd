@@ -24,10 +24,11 @@ Unit conversion function "from"-"to"
  uc(1, "mkm2", "mD")
  uc(u(1:5, "kg"), "kg", "lb")
  uc(u(list(1, 2), "ton"), "ton", "lb")
+ uc(u(data.frame(x1 = 1:3, x2 = 4:6), "ft3"), "ft3", "cm3")
  uc(1, "ft3", "l")
  uc(1, "ft3", "cm3")
  uc(1, "bbl", "l")
- uc(150, "m", "km") + u(1:5, "km")
+ uc(150, "m", "km") + u(c(1.0, 2.0, 3.5), "km")
  uc(1.5, "cP", "Pa*s")
  # Example below with correct units
  uc(1, "kg/m3", "lb/ft3")
@@ -43,4 +44,3 @@ Unit conversion function "from"-"to"
   \item \url{http://petrowiki.org}
  }
 }
-

@@ -12,4 +12,3 @@ Density unit list
 \details{
 Valid units: "g/cm3", "kg/m3" and "lb/ft3"
 }
-

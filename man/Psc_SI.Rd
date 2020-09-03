@@ -4,7 +4,9 @@
 \name{Psc_SI}
 \alias{Psc_SI}
 \title{Built-in constant: standard pressure}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 Psc_SI
 }
@@ -12,4 +14,3 @@ Psc_SI
 Standard pressure is METRIC units, 1.01325 [bar]
 }
 \keyword{datasets}
-

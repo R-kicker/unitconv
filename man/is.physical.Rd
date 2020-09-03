@@ -19,4 +19,3 @@ Generic function: check physical measure
  is.physical(32)
  is.physical(u(32, "deg.C"))
 }
-

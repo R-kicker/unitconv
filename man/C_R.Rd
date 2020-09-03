@@ -18,4 +18,3 @@ Temperature conversion: Celsius to Rankine
 \examples{
 C_R(15.6)
 }
-

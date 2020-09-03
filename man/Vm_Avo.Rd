@@ -13,4 +13,3 @@ Molar volume in METRIC units [l] per 1 g-mole
 \examples{
  Vm_Avo()
 }
-

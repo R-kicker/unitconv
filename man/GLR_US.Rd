@@ -18,4 +18,3 @@ Gas-liquid ratio conversion: METRIC [m3/m3] to FIELD [scf/STB]
 \examples{
  GLR_US(c(85, 110))
 }
-

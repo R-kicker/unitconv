@@ -4,7 +4,9 @@
 \name{R_SI}
 \alias{R_SI}
 \title{Built-in constant: Universal gas constant}
-\format{An object of class \code{numeric} of length 1.}
+\format{
+An object of class \code{numeric} of length 1.
+}
 \usage{
 R_SI
 }
@@ -12,4 +14,3 @@ R_SI
 Universal gas constant in SI units, 8.3144621 [J/(mole*K)]
 }
 \keyword{datasets}
-

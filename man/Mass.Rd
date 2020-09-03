@@ -12,4 +12,3 @@ Mass unit list
 \details{
 Valid units: "mkg", "mg", "g", "kg", "ton", "lb" (pound) and "ou" (ounce)
 }
-
