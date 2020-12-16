@@ -114,7 +114,7 @@ bbl_ft3 <- 1 / 0.1781076
 #' @title Important conversion factors apart from unit lists
 #' @description Area: millidarcy [mD] to square meter [m2] conversion factor
 #' @export
-mD_m2 <- 0.986923266716e-15
+mD_m2 <- 1/101325 * 1e-10
 
 #' @title Important conversion factors apart from unit lists
 #' @description Pressure: psi [psi]=[lb/in2] to Pascal [Pa] conversion factor
@@ -179,8 +179,8 @@ Area <- function()
     units = c("mkm2", "mm2", "cm2", "dm2", "m2", "km2", "ha",
               "mD", "D", "mkD", "nD",
               "in2", "acre", "ft2"),
-    const = c(1e12, 1e6, 1e4, 1e2, 1, 1e-6, 1e-4,
-              1/mD_m2, 1e3/mD_m2, 1e6/mD_m2, 1e9/mD_m2,
+    const = c(1e+12, 1e+6, 1e+4, 1e+2, 1e+0, 1e-6, 1e-4,
+              1/mD_m2, 1e-3/mD_m2, 1e6/mD_m2, 1e9/mD_m2,
               (12/ft_m)^2, 1/4046.86, (1/ft_m)^2)
   )
 
