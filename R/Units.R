@@ -114,7 +114,7 @@ bbl_ft3 <- 1 / 0.1781076
 #' @title Important conversion factors apart from unit lists
 #' @description Area: millidarcy [mD] to square meter [m2] conversion factor
 #' @export
-mD_m2 <- 0.9869e-15
+mD_m2 <- 0.986923266716e-15
 
 #' @title Important conversion factors apart from unit lists
 #' @description Pressure: psi [psi]=[lb/in2] to Pascal [Pa] conversion factor
@@ -177,9 +177,11 @@ Length <- function()
 Area <- function()
   list(
     units = c("mkm2", "mm2", "cm2", "dm2", "m2", "km2", "ha",
-              "mD", "D", "in2", "acre"),
+              "mD", "D", "mkD", "nD",
+              "in2", "acre", "ft2"),
     const = c(1e12, 1e6, 1e4, 1e2, 1, 1e-6, 1e-4,
-              1/(mD_m2*1e-3), 1/mD_m2, (12/ft_m)^2, 1/4046.86)
+              1/mD_m2, 1e3/mD_m2, 1e6/mD_m2, 1e9/mD_m2,
+              (12/ft_m)^2, 1/4046.86, (1/ft_m)^2)
   )
 
 #' @title Volume unit list
@@ -267,17 +269,19 @@ measurelist <- function()
 #'  \dontrun{uc(1, "kg/m3", "lbft3")}
 #' @export
 uc <- function(x, from, to) {
-  validunits <-
-    unlist(sapply(X = measurelist(), FUN = function(f) f()$units))
+  listunits <- sapply(X = measurelist(), FUN = function(f) f()$units)
+  validunits <- unlist(listunits)
   if (!((from %in% validunits) & (to %in% validunits)))
     stop("Invalid units input")
-  lf <- sapply(X = measurelist(),
-               FUN = function(f, x) if (x %in% f()$units) f else NULL,
-               x = from)
-  phys <- lf[[which(sapply(X = lf, FUN = function(f) is.null(f)) == FALSE)]]
-  i <- which(phys()$units == from)
-  j <- which(phys()$units == to)
-  m <- phys()$const[j] / phys()$const[i]
+  # lf <- sapply(X = measurelist(),
+  #              FUN = function(f, x) if (x %in% f()$units) f else NULL,
+  #              x = from)
+  #z <- which(sapply(listunits, `%in%`, x = from))
+  #phys <- lf[[which(sapply(X = lf, FUN = is.null) == FALSE)]]()
+  phys <- measurelist()[which(sapply(listunits, `%in%`, x = from))][[1]]()
+  i <- which(phys$units == from)
+  j <- which(phys$units == to)
+  m <- phys$const[j] / phys$const[i]
   # which **ply function we shall use ??
   if (is.data.frame(x)) {
     # is this OK?
