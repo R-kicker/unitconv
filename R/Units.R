@@ -114,7 +114,7 @@ bbl_ft3 <- 1 / 0.1781076
 #' @title Important conversion factors apart from unit lists
 #' @description Area: millidarcy [mD] to square meter [m2] conversion factor
 #' @export
-mD_m2 <- 0.9869e-12
+mD_m2 <- 0.9869e-15
 
 #' @title Important conversion factors apart from unit lists
 #' @description Pressure: psi [psi]=[lb/in2] to Pascal [Pa] conversion factor
@@ -179,7 +179,7 @@ Area <- function()
     units = c("mkm2", "mm2", "cm2", "dm2", "m2", "km2", "ha",
               "mD", "D", "in2", "acre"),
     const = c(1e12, 1e6, 1e4, 1e2, 1, 1e-6, 1e-4,
-              1/(mD_m2*1e-3), 1/mD_m2, (12/ft_m)^2, 4046.86)
+              1/(mD_m2*1e-3), 1/mD_m2, (12/ft_m)^2, 1/4046.86)
   )
 
 #' @title Volume unit list
@@ -269,7 +269,8 @@ measurelist <- function()
 uc <- function(x, from, to) {
   validunits <-
     unlist(sapply(X = measurelist(), FUN = function(f) f()$units))
-  if (!((from %in% validunits) & (to %in% validunits))) stop("Invalid units input")
+  if (!((from %in% validunits) & (to %in% validunits)))
+    stop("Invalid units input")
   lf <- sapply(X = measurelist(),
                FUN = function(f, x) if (x %in% f()$units) f else NULL,
                x = from)
@@ -305,7 +306,8 @@ uc <- function(x, from, to) {
 u <- function(x, unit) {
   attr(x, "unit") <- unit
   # !!! Need to preserve existing S3 class attribute
-  structure(x, class = c(class(x), "physical"))
+  # !!! The order of class names is important: new class before old class
+  structure(x, class = c("physical", class(x)))
 }
 
 #' @title Unit destroy function
@@ -385,7 +387,7 @@ R_C <- function(x) {
 #'  kgm3_API(865)
 #' @export
 kgm3_API <- function(x) {
-  u(gcc_API(x), "API")
+  u(gcc_API(x / 1000), "API")
 }
 
 #' @title Density - Gravity conversion
