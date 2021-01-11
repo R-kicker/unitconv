@@ -30,22 +30,22 @@ TF_TR <- 459.67        # degree Rankine to Farenheit
 TC_TK <- 273.15        # degree Kelvin to Celsius
 
 #' @title Built-in constant: standard pressure
-#' @description Standard pressure is METRIC units, 1.01325 [bar]
+#' @description Standard pressure in METRIC units, 1.01325 [bar]
 #' @export
 Psc_SI <- 1.01325      # Standard pressure, metric units
 
 #' @title Built-in constant: standard temperature
-#' @description Standard temperature is METRIC units, 293.15 [K]
+#' @description Standard temperature in METRIC units, 293.15 [K]
 #' @export
 Tsc_SI <- 20 + TC_TK  # Standard temperature, metric units
 
 #' @title Built-in constant: standard pressure
-#' @description Standard pressure is FIELD units, 14.696 [psia]
+#' @description Standard pressure in FIELD units, 14.696 [psia]
 #' @export
 Psc_US <- 14.696       # Standard pressure, US oilfield units
 
 #' @title Built-in constant: standard temperature
-#' @description Standard temperature is FIELD units, 519.67 [R]
+#' @description Standard temperature in FIELD units, 519.67 [R]
 #' @export
 Tsc_US <- 60 + TF_TR  # Standard temperature, US oilfield units
 
@@ -67,21 +67,14 @@ ad_SI <- 1.2232        # 1 atm, 20 C
 #' @title Molar volume in METRIC units
 #' @description Molar volume in METRIC units [l] per 1 g-mole
 #'  as per Avogadro law - i.e. T=0 C and p=1 atm = 1.01325 bar
-#' @examples
-#'  Vm_Avo()
 #' @export
-Vm_Avo <- function()
-  return(22.413962)    # 1 atm, 0 C
+Vm_Avo <- 22.413962 # 1 atm, 0 C
 
 #' @title Molar volume in METRIC units
 #' @description Molar volume in METRIC units [l] per 1 g-mole
 #'  at FIELD standard conditions(!) - i.e. T=60 F and p=14.696 psia
-#' @examples
-#'  library(unitconv)
-#'  Vm_SI()
 #' @export
-Vm_SI <- function()
-  return(23.70336)     # 14.696 psia, 60 F
+Vm_SI <- 23.70336 # 14.696 psia, 60 F
 
 #' @title Molar volume in FIELD units
 #' @description Molar volume in FIELD units [scf] per 1 lb-mole
@@ -90,7 +83,7 @@ Vm_SI <- function()
 #'  Vm_US()
 #' @export
 Vm_US <- function()
-  u(uc(Vm_SI(), "l", "ft3") * uc(1, "lb", "g"), "scf")
+  u(uc(Vm_SI, "l", "ft3") * uc(1, "lb", "g"), "scf")
 
 #==================================#
 # Section 1: Conversion factors ####
@@ -263,16 +256,20 @@ measurelist <- function()
 #'  uc(1, "bbl", "l")
 #'  uc(150, "m", "km") + u(c(1.0, 2.0, 3.5), "km")
 #'  uc(1.5, "cP", "Pa*s")
+#'  # Example below has no warning because input 'x' already has units
+#'  uc(u(1, "bar"), to = "mmHg")
 #'  # Example below with correct units
 #'  uc(1, "kg/m3", "lb/ft3")
 #'  # Example below with incorrect units causes an error
 #'  \dontrun{uc(1, "kg/m3", "lbft3")}
 #' @export
-uc <- function(x, from, to) {
+uc <- function(x, from = NULL, to) {
   listunits <- sapply(X = measurelist(), FUN = function(f) f()$units)
   validunits <- unlist(listunits)
+  if (is.null(from) & (is.physical(x)))
+    from <- attributes(x)$unit
   if (!((from %in% validunits) & (to %in% validunits)))
-    stop("Invalid units input")
+    stop("Invalid units input in 'from' or 'to' direction")
   # lf <- sapply(X = measurelist(),
   #              FUN = function(f, x) if (x %in% f()$units) f else NULL,
   #              x = from)
@@ -291,8 +288,9 @@ uc <- function(x, from, to) {
   } else {
     z <- sapply(x, `*`, m)
   }
-  if (is.physical(x)) z <- u(z, to)
-  return(z)
+  if (!is.physical(x))
+      warning("Input data has not assigned units! Now assignment is done")
+  u(z, to)
 }
 
 #' @title Unit create function
@@ -302,10 +300,12 @@ uc <- function(x, from, to) {
 #' @return Object of class "physical"
 #' @examples
 #'  library(unitconv)
-#'  z1 <- u(1:5, "km")
-#'  print(z1)
-#'  z2 <- u(list(1, 2), "kg")
+#'  z1 <- u(datasets::pressure, c("deg.C", "mmHg"))
+#'  head(z1)
+#'  z2 <- u(list(1, 2, 8), c("kg", "m", "bbl"))
 #'  print(z2)
+#'  z3 <- u(1:5, "cm")
+#'  print(z3)
 #' @export
 u <- function(x, unit) {
   attr(x, "unit") <- unit
@@ -331,7 +331,7 @@ un <- function(x) {
   # need to preserve existing S3 classes
   cl <- class(x)
   class(x) <- cl[setdiff(seq_along(cl), which(cl == "physical"))]
-  return(x)
+  x
 }
 
 #' @title Temperature conversion
@@ -515,7 +515,7 @@ GLR_SI <- function(x) {
 #'  is.physical(u(32, "deg.C"))
 #' @export
 is.physical <- function(x) {
-  return(any(class(x) == "physical"))
+  any(class(x) == "physical")
 }
 
 #' @title Generic function: print physical measure
@@ -535,9 +535,12 @@ print.physical <- function(x, ...) {
   } else {
     attr(x, "unit") <- NULL
   }
-  print(paste0("Units: ", uattr))
-  # don't use unclass! - a weird way
+  # print(paste0("Units: ", uattr))
+  cat("Units: ", paste(uattr, collapse = "; "), "\n")
+  # !!! don't use unclass() function - it is a weird way
   print(un(x), ...)
+  # ??? Use NextMethod or not - natural way???
+  # NextMethod("print", x, ...)
 }
 
 #==================================#
